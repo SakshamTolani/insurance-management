@@ -126,5 +126,5 @@ http PUT http://localhost:8080/api/claims/{id}
 
 
 
-[![forthebadge made-with-java](http://ForTheBadge.com/images/badges/made-with-java.svg)](https://www.python.org/)  [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
+[![forthebadge made-with-java](http://ForTheBadge.com/images/badges/made-with-java.svg)](https://www.java.com)  [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 
