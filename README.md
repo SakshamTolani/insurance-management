@@ -1,7 +1,9 @@
-# INSURANCE MANAGEMENT SYSTEM USING SPRING BOOT
+# INSURANCE MANAGEMENT SYSTEM USING SPRING BOOT WITH BASIC AUTH
 [Spring Boot](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/) is a powerful and flexible toolkit for create Java applications.
 
 [INSURANCE MANAGEMENT SYSTEM](#insurance-management-system-using-spring-boot) can be used by insurance management companies where they can add clients, add insurance policies which has the fields mainly type, dates, amount and client who has bought. Also, claims can be added with the parameters such as dates, status and policy-id which already exists in insurance policies data storage.
+
+**Note: All these features can only be accesed after basic authentication.**
 
 ## Requirements
 - Java 8
@@ -9,6 +11,7 @@
 - Spring Data JPA (Hibernate)
 - H2 Database
 - Netbeans
+- Postman
 
 ## Quick Start
 
@@ -26,12 +29,12 @@ File > Import Project > From ZIP...> Select Zip File.
 Insurance-Management > Source Packages > com.insurancemanagement > Open InsuranceManagementApplication.java
 ```
 - Right Click in between the opened file and select **Run File**.
-
+- Now the server is ready and running on **PORT 8080**.
 
 ## Structure
 In a RESTful API, endpoints (URLs) define the structure of the API and how end users access data from our application using the HTTP methods - GET, POST, PUT, DELETE. Endpoints should be logically organized around _collections_ and _elements_, both of which are resources.
 
-In our case, we have three resources `clients`,`insurance policies` & `claims`, so we will use the following URLS - `/api/clients`,`/api/clients/{id}`,`api/policies`, `/api/policies/{id}`, `/api/claims` & `/api/claims/{<id}` for collections and elements, respectively:
+In our case, we have three resources `clients`,`insurance policies` & `claims`, so we will use the following URLS - `/api/clients`,`/api/clients/{id}`,`api/policies`, `/api/policies/{id}`, `/api/claims` & `/api/claims/{id}` for collections and elements, respectively:
 
 #### **CLIENTS**
 Endpoint |HTTP Method | CRUD Method | Result
@@ -59,6 +62,37 @@ Endpoint |HTTP Method | CRUD Method | Result
 `api/claims`| POST | CREATE | Create a new claim
 `api/claims/{id}` | PUT | UPDATE | Update claim profile by id
 `api/claims/{id}` | DELETE | DELETE | Delete claim by id
+
+## Use
+We can test the API using [Postman](https://www.postman.com/)
+
+Only authenticated user can use the API services, for that reason if we try this:
+```
+http  http://localhost:8080/api/clients
+```
+we get:
+```
+{
+    //Empty Object
+}
+```
+Instead, if we try to access with credentials:
+- **Username: saksham**
+- **Password: password**
+
+In order to use above credentials, steps are given as: 
+- Open Postman and enter `http://localhost:8080/api/clients` in the url box.
+- Select Authorization and choose Type as **Basic Auth**.
+- Enter Username as **saksham**.
+- Enter Password as **password**
+- Click on **Send**.
+
+
+The API has some restrictions:
+-   The insurance policies are always associated with a client (through client-id).
+-   The claims are always associated with a policy (through policy-id).
+-   APIs can only be used by [Authenticated Users](#use)
+-   The API doesn't allow unauthenticated requests.
 
 
 ### Commands
